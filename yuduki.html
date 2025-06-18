@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yuduki - 美しい月の夜</title>
+    <title>e-Bridge - 不登校・引きこもり支援事業</title>
     <style>
         * {
             margin: 0;
@@ -12,11 +12,28 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', sans-serif;
             line-height: 1.6;
-            color: #333;
-            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: #222;
+            background: linear-gradient(135deg, #f8f9fd 0%, #e8f2ff 25%, #dde7f0 50%, #e8f2ff 75%, #f8f9fd 100%);
             min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* 背景エフェクト */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(120, 219, 226, 0.05) 0%, transparent 50%);
+            z-index: -1;
         }
 
         .container {
@@ -25,180 +42,567 @@
             padding: 0 20px;
         }
 
-        /* Header */
+        /* ヘッダー */
         header {
-            background: rgba(255, 255, 255, 0.95);
+            background: rgba(255, 255, 255, 0.98);
             backdrop-filter: blur(10px);
             padding: 1rem 0;
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
+            border-bottom: 2px solid rgba(120, 119, 198, 0.4);
             box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
         }
 
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
         .logo {
-            font-size: 1.8rem;
+            font-size: 2rem;
             font-weight: bold;
-            color: #1e3c72;
+            color: #2d4a6b;
+            text-shadow: none;
         }
 
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: #333;
-            font-weight: 500;
-            transition: color 0.3s ease;
-        }
-
-        .nav-links a:hover {
-            color: #1e3c72;
-        }
-
-        /* Main content */
+        /* メインコンテンツ */
         main {
-            margin-top: 100px;
+            margin-top: 80px;
             padding: 2rem 0;
         }
 
+        /* ヒーローセクション */
         .hero {
             text-align: center;
             padding: 4rem 0;
-            color: white;
+            color: #2d4a6b;
+            position: relative;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 20px;
+            margin: 2rem 0;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
         }
 
         .hero h1 {
             font-size: 3.5rem;
             margin-bottom: 1rem;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            background: linear-gradient(45deg, #2d4a6b, #7877c6, #ff6b9d);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: none;
         }
 
         .hero p {
             font-size: 1.3rem;
             margin-bottom: 2rem;
-            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+            color: #2d4a6b;
+            font-weight: 500;
         }
 
-        .content {
+        .hero-subtitle {
+            font-size: 1.1rem;
+            color: #7877c6;
+            margin-bottom: 3rem;
+            font-weight: 500;
+        }
+
+        /* セクション共通スタイル */
+        .section {
             background: rgba(255, 255, 255, 0.95);
-            margin: 2rem 0;
+            margin: 3rem 0;
             padding: 3rem;
             border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            box-shadow: 
+                0 20px 40px rgba(0, 0, 0, 0.1),
+                0 0 0 1px rgba(120, 119, 198, 0.1);
             backdrop-filter: blur(10px);
+            position: relative;
         }
 
-        .content h2 {
-            color: #1e3c72;
+        .section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #78e6d0, #7877c6, #ff77c6);
+            border-radius: 20px 20px 0 0;
+        }
+
+        .section h2 {
+            color: #1a2b3d;
+            margin-bottom: 2rem;
+            font-size: 2.2rem;
+            border-left: 4px solid #2d4a6b;
+            padding-left: 1rem;
+            font-weight: 700;
+        }
+
+        .section h3 {
+            color: #2d4a6b;
+            margin: 2rem 0 1rem 0;
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .section p {
             margin-bottom: 1.5rem;
-            font-size: 2rem;
-        }
-
-        .content p {
-            margin-bottom: 1rem;
             font-size: 1.1rem;
             line-height: 1.8;
+            color: #333;
+            font-weight: 400;
         }
 
-        .moon-section {
+        .section strong {
+            color: #1a2b3d;
+            font-weight: 600;
+        }
+
+        /* 画像スタイル */
+        .section-image {
+            width: 100%;
+            height: 300px;
+            background: linear-gradient(135deg, #f5f7fa, #e8f2ff);
+            border: 2px dashed #2d4a6b;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 2rem 0;
+            color: #1a2b3d;
+            font-size: 1.1rem;
             text-align: center;
             padding: 2rem;
-            background: rgba(255, 255, 255, 0.1);
+            font-weight: 500;
+        }
+
+        /* 特別なセクション */
+        .personal-story {
+            background: linear-gradient(135deg, rgba(120, 119, 198, 0.1), rgba(255, 119, 198, 0.1));
+            border: 2px solid rgba(120, 119, 198, 0.3);
+        }
+
+        .business-model {
+            background: linear-gradient(135deg, rgba(120, 230, 208, 0.1), rgba(120, 119, 198, 0.1));
+            border: 2px solid rgba(120, 230, 208, 0.3);
+        }
+
+        /* フェーズ表示 */
+        .phases {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .phase-card {
+            background: linear-gradient(135deg, #f8f9ff, #e8f4fd);
+            padding: 2rem;
             border-radius: 15px;
+            border-left: 5px solid #78e6d0;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .phase-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .phase-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #2d4a6b;
+            margin-bottom: 1rem;
+        }
+
+        /* AI技術セクション */
+        .ai-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
             margin: 2rem 0;
         }
 
-        .moon-emoji {
-            font-size: 4rem;
+        .ai-feature {
+            background: linear-gradient(135deg, #f0f8ff, #e6f3ff);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 2px solid rgba(120, 119, 198, 0.2);
+            text-align: center;
+        }
+
+        .ai-icon {
+            font-size: 3rem;
             margin-bottom: 1rem;
         }
 
-        footer {
-            background: rgba(0, 0, 0, 0.8);
-            color: white;
-            text-align: center;
-            padding: 2rem 0;
-            margin-top: 3rem;
+        /* 成果指標 */
+        .metrics {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
         }
 
+        .metric-card {
+            background: linear-gradient(135deg, #78e6d0, #7877c6);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 10px 20px rgba(120, 119, 198, 0.3);
+        }
+
+        .metric-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        /* 競合優位性 */
+        .advantages {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .advantage-item {
+            background: #f8f9ff;
+            padding: 1.5rem;
+            border-radius: 10px;
+            border-left: 4px solid #2d4a6b;
+        }
+
+        .advantage-item h3 {
+            color: #1a2b3d;
+            font-weight: 600;
+        }
+
+        .advantage-item p {
+            color: #333;
+        }
+
+        /* 強調ボックス */
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(45, 74, 107, 0.08), rgba(120, 119, 198, 0.08));
+            padding: 2rem;
+            border-radius: 15px;
+            border: 2px solid rgba(45, 74, 107, 0.3);
+            margin: 2rem 0;
+        }
+
+        .highlight-box p {
+            color: #1a2b3d;
+            font-weight: 500;
+        }
+
+        /* レスポンシブ */
         @media (max-width: 768px) {
-            .nav-links {
-                gap: 1rem;
-                font-size: 0.9rem;
-            }
-            
             .hero h1 {
                 font-size: 2.5rem;
             }
             
-            .content {
-                margin: 1rem 0;
+            .section {
+                margin: 2rem 0;
                 padding: 2rem;
             }
+            
+            .phases {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* アニメーション */
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
         }
     </style>
 </head>
 <body>
     <header>
-        <nav class="container">
-            <div class="logo">Ashioto 2025</div>
-            <ul class="nav-links">
-                <li><a href="yuduki.html">Yuduki</a></li>
-                <li><a href="yuko.html">Yuko</a></li>
-                <li><a href="haruppy.html">Haruppy</a></li>
-            </ul>
-        </nav>
+        <div class="container">
+            <div class="logo">e-Bridge</div>
+        </div>
     </header>
 
     <main>
         <section class="hero">
             <div class="container">
-                <h1>Yuduki</h1>
-                <p>静寂な夜に響く、美しい月の歌声</p>
+                <h1>e-Bridge</h1>
+                <p>eスポーツを通じた不登校・引きこもり支援事業</p>
+                <div class="hero-subtitle">〜ゲームが架ける、社会復帰への橋〜</div>
             </div>
         </section>
 
-        <section class="container">
-            <div class="content">
-                <h2>月夜の物語</h2>
-                <p>Yudukiは、静かな夜空に浮かぶ美しい月のように、人々の心に安らぎをもたらします。その優しい光は、暗闇の中でも希望を見失わない強さを教えてくれます。</p>
-                <p>夜が深まるにつれて、Yudukiの魅力はさらに輝きを増していきます。まるで月の満ち欠けのように、時には控えめに、時には堂々と、その美しさを表現します。</p>
-            </div>
-
-            <div class="moon-section">
-                <div class="moon-emoji">🌙</div>
-                <h3 style="color: white; margin-bottom: 1rem;">月の詩</h3>
-                <p style="color: white; font-style: italic;">
-                    「静寂な夜空に浮かぶ月のように<br>
-                    優しい光で心を照らし<br>
-                    希望という名の道を示す」
-                </p>
-            </div>
-
-            <div class="content">
-                <h2>Yudukiの特徴</h2>
-                <p><strong>🌟 優雅さ:</strong> 洗練された美しさを持ち、どんな場面でも品格を保ちます。</p>
-                <p><strong>🌟 神秘性:</strong> 月のように神秘的で、人々を魅了する不思議な魅力があります。</p>
-                <p><strong>🌟 安らぎ:</strong> その存在自体が人々に平安と安らぎをもたらします。</p>
-            </div>
-        </section>
-    </main>
-
-    <footer>
         <div class="container">
-            <p>&copy; 2025 Ashioto Project. すべての権利を留保します。</p>
+            <!-- 自己紹介・背景 -->
+            <section class="section personal-story">
+                <h2>🎮 なぜ私がこの事業を始めるのか</h2>
+                
+                <div class="section-image">
+                    <div>
+                        <strong>画像：</strong>吃音を持つ創設者がゲーム配信をしている様子<br>
+                        マイク前で真剣にゲームをプレイし、チャットでコミュニケーションを取る姿
+                    </div>
+                </div>
+
+                <h3>私自身の体験</h3>
+                <p>私は<strong>吃音</strong>という特性を持っており、学校でのコミュニケーションに大きな困難を感じていました。話すことへの不安から人との関わりを避けるようになり、<strong>不登校</strong>を経験しました。</p>
+                
+                <p>しかし、<strong>YouTubeでの活動とeスポーツとの出会い</strong>が私の人生を変えました。ゲームをプレイしながら話している時は、細かいことを気にせずに自然に喋ることができ、<strong>吃音によるどもりも少なくなる</strong>ことを発見したのです。</p>
+
+                <div class="highlight-box">
+                    <p><strong>ゲームの力を実感</strong><br>
+                    ゲーム中は集中状態に入り、自分らしく表現できる。達成感やキャラクターの魅力が、押さえつけがちな自分を発散させてくれる貴重な時間でした。</p>
+                </div>
+
+                <p>現在もプロゲーマーを目指しながらYouTubeで活動を続け、同じような困難を抱える子供たちのために、この経験を活かしたいと強く思っています。</p>
+
+                <div class="section-image">
+                    <div>
+                        <strong>画像：</strong>不登校の子供たちがオンラインでeスポーツを楽しんでいる様子<br>
+                        画面越しに笑顔で協力プレイをする子供達の温かい雰囲気
+                    </div>
+                </div>
+            </section>
+
+            <!-- 事業概要 -->
+            <section class="section">
+                <h2>🌟 e-Bridgeとは</h2>
+                
+                <p><strong>「e-Bridge」</strong>は、不登校や引きこもり状態にある小中高生を対象に、<strong>eスポーツを通じて自己肯定感を育み、社会との繋がりを再構築し、最終的に社会復帰を支援する</strong>革新的なプログラムです。</p>
+
+                <div class="section-image">
+                    <div>
+                        <strong>画像：</strong>e-Bridgeのコンセプト図<br>
+                        不登校の子供からeスポーツを経て社会復帰までの道のりを表した橋の図
+                    </div>
+                </div>
+
+                <h3>対象となる子供たち</h3>
+                <ul style="margin-left: 2rem; margin-bottom: 2rem; color: #333; font-weight: 400;">
+                    <li>学校での人間関係に困難を抱え、不登校に至った子供</li>
+                    <li>自己肯定感を失い、自宅に引きこもっている子供</li>
+                    <li>発達特性（ASD、ADHDなど）により、集団行動やコミュニケーションに困難を感じている子供</li>
+                    <li>従来のフリースクールではアプローチが難しい、重度の不登校・引きこもり状態にある子供</li>
+                </ul>
+
+                <div class="highlight-box">
+                    <p><strong>なぜ「ゲーム」なのか？</strong><br>
+                    ゲームは子供たちの興味の最たるものであり、従来の支援では届かない層に対する強力な入口となります。共通の興味を通じて安心できる関係性を築くことから始めます。</p>
+                </div>
+            </section>
+
+            <!-- 3つのフェーズ -->
+            <section class="section business-model">
+                <h2>🚀 3段階のサポートプログラム</h2>
+
+                <div class="phases">
+                    <div class="phase-card">
+                        <div class="phase-number">Phase 1</div>
+                        <h3>関係構築・居場所づくり</h3>
+                        <div class="section-image" style="height: 200px; margin: 1rem 0;">
+                            <div>
+                                <strong>画像：</strong>オンラインDiscordサーバーでの交流風景<br>
+                                アバターを使った安全なコミュニケーション空間
+                            </div>
+                        </div>
+                        <p><strong>eスポーツプラットフォーム</strong>で安心できる居場所を提供。顔出し・声出しは任意で、アバターやテキストチャットでの参加も可能。</p>
+                        <p><strong>対象ゲーム：</strong>Apex Legends、VALORANT、Fortnite、Street Fighter 6など</p>
+                    </div>
+
+                    <div class="phase-card">
+                        <div class="phase-number">Phase 2</div>
+                        <h3>興味の深化・スキル習得</h3>
+                        <div class="section-image" style="height: 200px; margin: 1rem 0;">
+                            <div>
+                                <strong>画像：</strong>子供がプログラミングや動画編集を学んでいる様子<br>
+                                集中してパソコンに向かう子供の成長している姿
+                            </div>
+                        </div>
+                        <p>eスポーツを通じて生まれた興味を<strong>具体的なスキル習得</strong>へ繋げます。</p>
+                        <p><strong>学習内容：</strong>ゲーム制作、動画編集、プログラミング、デザインなど</p>
+                    </div>
+
+                    <div class="phase-card">
+                        <div class="phase-number">Phase 3</div>
+                        <h3>社会復帰・キャリア支援</h3>
+                        <div class="section-image" style="height: 200px; margin: 1rem 0;">
+                            <div>
+                                <strong>画像：</strong>社会復帰を果たした若者が職場で活躍している様子<br>
+                                明るい表情で仕事に取り組む青年の希望に満ちた姿
+                            </div>
+                        </div>
+                        <p>身につけたスキルを活かし、<strong>社会参加や将来のキャリア形成</strong>を支援。インターンシップ、就労支援、進学相談まで包括的にサポート。</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- AI技術の特徴 -->
+            <section class="section">
+                <h2>🤖 革新的なAI支援システム</h2>
+
+                <div class="section-image">
+                    <div>
+                        <strong>画像：</strong>AI分析ダッシュボードの画面<br>
+                        ゲームスキルや学習進捗を可視化したカラフルなグラフとデータ
+                    </div>
+                </div>
+
+                <div class="ai-features">
+                    <div class="ai-feature">
+                        <div class="ai-icon">🎯</div>
+                        <h3>AIコーチングシステム</h3>
+                        <p>ゲームプレイデータをリアルタイム分析し、個別最適化されたフィードバックと練習メニューを自動生成</p>
+                    </div>
+
+                    <div class="ai-feature">
+                        <div class="ai-icon">📚</div>
+                        <h3>AIアシスタント学習</h3>
+                        <p>学習履歴と理解度を分析し、最適な学習コンテンツを提案。24時間チャットサポートで質問対応</p>
+                    </div>
+
+                    <div class="ai-feature">
+                        <div class="ai-icon">🎪</div>
+                        <h3>AIキャリアパス提案</h3>
+                        <p>蓄積されたデータから子供の特性と強みを分析し、最適な職業・キャリアパスを複数提案</p>
+                    </div>
+                </div>
+
+                <div class="highlight-box">
+                    <p><strong>個別最適化の実現</strong><br>
+                    従来の画一的な支援ではなく、一人ひとりの特性、進捗、興味に完全に合わせた「その子だけの」支援プログラムを提供します。</p>
+                </div>
+            </section>
+
+            <!-- 競合優位性 -->
+            <section class="section">
+                <h2>💎 5つの競合優位性</h2>
+
+                <div class="section-image">
+                    <div>
+                        <strong>画像：</strong>e-Bridgeの競合優位性を表現した比較チャート<br>
+                        従来の支援方法との違いを分かりやすく示したインフォグラフィック
+                    </div>
+                </div>
+
+                <div class="advantages">
+                    <div class="advantage-item">
+                        <h3>🎮 ゲームという強力な入口</h3>
+                        <p>重度の不登校・引きこもり層に対し、子供たちの興味の最たるものであるゲームを切り口とした革新的アプローチ</p>
+                    </div>
+
+                    <div class="advantage-item">
+                        <h3>🤖 AIによる個別最適化</h3>
+                        <p>ゲームスキル向上から学習支援、キャリアパス提案まで、AIを活用した完全個別対応</p>
+                    </div>
+
+                    <div class="advantage-item">
+                        <h3>🌐 オンライン×オフライン融合</h3>
+                        <p>自宅参加可能なオンライン環境と、希望に応じた社会との接点を持てるオフライン環境の両立</p>
+                    </div>
+
+                    <div class="advantage-item">
+                        <h3>👥 専門家×ゲーマーのメンター</h3>
+                        <p>心理的ケアとゲームを通じた共感・目標設定を同時にサポートできるハイブリッド人材</p>
+                    </div>
+
+                    <div class="advantage-item">
+                        <h3>🎯 一貫したキャリア支援</h3>
+                        <p>eスポーツをきっかけに、将来の社会参加・就労まで見据えた段階的な長期プログラム</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ビジネスモデル -->
+            <section class="section business-model">
+                <h2>💼 持続可能なビジネスモデル</h2>
+
+                <div class="section-image">
+                    <div>
+                        <strong>画像：</strong>収益構造を表現した円グラフ<br>
+                        月額利用料、企業連携、助成金など多様な収益源を色分けした図
+                    </div>
+                </div>
+
+                <h3>多様な収益源</h3>
+                <ul style="margin-left: 2rem; margin-bottom: 2rem; color: #333; font-weight: 400;">
+                    <li><strong>月額利用料：</strong>フェーズ別の段階的プログラム参加費</li>
+                    <li><strong>企業連携：</strong>インターンシップ先企業からの人材育成費</li>
+                    <li><strong>助成金・補助金：</strong>不登校支援・IT人材育成関連の公的支援</li>
+                    <li><strong>クラウドファンディング：</strong>社会課題解決への共感による資金調達</li>
+                </ul>
+
+                <div class="metrics">
+                    <div class="metric-card">
+                        <div class="metric-number">100人</div>
+                        <div>初年度目標利用者数</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-number">80%</div>
+                        <div>社会復帰成功率目標</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-number">全国</div>
+                        <div>オンライン展開エリア</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 今後の展望 -->
+            <section class="section">
+                <h2>🚀 将来展望</h2>
+
+                <div class="section-image">
+                    <div>
+                        <strong>画像：</strong>全国に展開するe-Bridgeネットワークのマップ<br>
+                        日本地図上に拠点が光る点として配置されたビジョン図
+                    </div>
+                </div>
+
+                <h3>段階的拡大計画</h3>
+                <p><strong>短期（1-2年）：</strong>オンラインプラットフォームの確立、初期ユーザー獲得、AIシステムの実証</p>
+                <p><strong>中期（3-5年）：</strong>全国展開、オフライン拠点の段階的設置、成人引きこもり支援への拡大</p>
+                <p><strong>長期（5年以上）：</strong>VR/AR技術活用、海外展開、教育機関との本格連携</p>
+
+                <div class="highlight-box">
+                    <p><strong>社会的インパクト</strong><br>
+                    不登校・引きこもり問題に対する新しいアプローチを確立し、「ゲーム=悪」という既成概念を覆し、ゲームの社会貢献活用のモデルケースを創出します。</p>
+                </div>
+            </section>
+
+            <!-- 最後のメッセージ -->
+            <section class="section personal-story">
+                <h2>🌈 私の想い</h2>
+
+                <div class="section-image">
+                    <div>
+                        <strong>画像：</strong>希望に満ちた子供たちの笑顔<br>
+                        e-Bridgeを通じて成長し、自信を取り戻した子供たちの明るい表情
+                    </div>
+                </div>
+
+                <p>私自身が吃音で苦しみ、不登校を経験した過去があるからこそ、<strong>同じような困難を抱える子供たちの気持ちが深く理解できます</strong>。</p>
+
+                <p>ゲームを通じて自分らしさを取り戻し、社会とのつながりを築いた経験を、今度は子供たちと共有したい。彼らが秘めている<strong>無限の可能性を最大限に引き出し、社会で活躍できる人材へと成長させること</strong>を成し遂げたいのです。</p>
+
+                <div class="highlight-box">
+                    <p><strong>「e-Bridge」に込めた想い</strong><br>
+                    ゲームが架ける橋（Bridge）を通じて、孤立した子供たちと社会をつなぎ、新しい未来を一緒に歩んでいきたい。これが私のミッションです。</p>
+                </div>
+
+                <p style="text-align: center; font-size: 1.2rem; color: #2d4a6b; font-weight: bold; margin-top: 3rem;">
+                    子供たちの「チャレンジしたい」気持ちを尊重し、<br>
+                    一人ひとりが輝ける場所を作りたい。
+                </p>
+            </section>
         </div>
-    </footer>
+    </main>
 </body>
 </html>
