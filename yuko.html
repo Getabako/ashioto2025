@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yuko - 優しい光の詩</title>
+    <title>AI×VR スマートキャリア支援：秋田モデル</title>
     <style>
         * {
             margin: 0;
@@ -12,11 +12,42 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'SF Pro Display', 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', sans-serif;
             line-height: 1.6;
-            color: #333;
-            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #fecfef 100%);
+            color: #1a1a1a;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
+            position: relative;
+        }
+
+        /* 背景パターン */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 25% 25%, rgba(102, 126, 234, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 75% 75%, rgba(118, 75, 162, 0.1) 0%, transparent 50%),
+                linear-gradient(45deg, transparent 40%, rgba(255, 255, 255, 0.02) 50%, transparent 60%);
+            z-index: -1;
+        }
+
+        /* グリッドパターン */
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: -1;
         }
 
         .container {
@@ -25,220 +56,683 @@
             padding: 0 20px;
         }
 
-        /* Header */
+        /* ヘッダー */
         header {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(15px);
             padding: 1rem 0;
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
-        }
-
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            border-bottom: 1px solid rgba(102, 126, 234, 0.2);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
         }
 
         .logo {
             font-size: 1.8rem;
-            font-weight: bold;
-            color: #ff6b9d;
+            font-weight: 700;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: #333;
-            font-weight: 500;
-            transition: color 0.3s ease;
-        }
-
-        .nav-links a:hover {
-            color: #ff6b9d;
-        }
-
-        /* Main content */
+        /* メインコンテンツ */
         main {
-            margin-top: 100px;
+            margin-top: 80px;
             padding: 2rem 0;
         }
 
+        /* ヒーローセクション */
         .hero {
             text-align: center;
             padding: 4rem 0;
             color: white;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1), transparent);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            animation: pulse 3s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.7; }
+            50% { transform: translate(-50%, -50%) scale(1.1); opacity: 0.3; }
         }
 
         .hero h1 {
-            font-size: 3.5rem;
+            font-size: 3.2rem;
             margin-bottom: 1rem;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            font-weight: 700;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            position: relative;
+            z-index: 1;
         }
 
-        .hero p {
-            font-size: 1.3rem;
+        .hero-subtitle {
+            font-size: 1.4rem;
             margin-bottom: 2rem;
-            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+            opacity: 0.9;
+            font-weight: 300;
+            position: relative;
+            z-index: 1;
         }
 
-        .content {
-            background: rgba(255, 255, 255, 0.95);
-            margin: 2rem 0;
+        .hero-tagline {
+            font-size: 1.1rem;
+            margin-bottom: 3rem;
+            color: #e8f2ff;
+            font-weight: 400;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* セクション共通スタイル */
+        .section {
+            background: rgba(255, 255, 255, 0.98);
+            margin: 3rem 0;
             padding: 3rem;
             border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            box-shadow: 
+                0 20px 40px rgba(0, 0, 0, 0.1),
+                0 0 0 1px rgba(102, 126, 234, 0.1);
             backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
         }
 
-        .content h2 {
-            color: #ff6b9d;
+        .section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+        }
+
+        .section h2 {
+            color: #2d3748;
+            margin-bottom: 2rem;
+            font-size: 2.2rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .section h3 {
+            color: #4a5568;
+            margin: 2rem 0 1rem 0;
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .section p {
             margin-bottom: 1.5rem;
-            font-size: 2rem;
-        }
-
-        .content p {
-            margin-bottom: 1rem;
             font-size: 1.1rem;
             line-height: 1.8;
+            color: #2d3748;
         }
 
-        .flower-section {
+        .section strong {
+            color: #667eea;
+            font-weight: 600;
+        }
+
+        /* 画像スタイル */
+        .section-image {
+            width: 100%;
+            height: 300px;
+            background: linear-gradient(135deg, #f7fafc, #edf2f7);
+            border: 2px dashed #667eea;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 2rem 0;
+            color: #4a5568;
+            font-size: 1.1rem;
             text-align: center;
             padding: 2rem;
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 15px;
-            margin: 2rem 0;
+            position: relative;
+            overflow: hidden;
         }
 
-        .flower-emoji {
-            font-size: 4rem;
-            margin-bottom: 1rem;
+        .section-image::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(102, 126, 234, 0.1), transparent);
+            animation: shimmer 3s infinite;
         }
 
-        .features {
+        @keyframes shimmer {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+
+        /* 特別セクション */
+        .personal-story {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.05), rgba(118, 75, 162, 0.05));
+            border-left: 5px solid #667eea;
+        }
+
+        .tech-innovation {
+            background: linear-gradient(135deg, rgba(118, 75, 162, 0.05), rgba(102, 126, 234, 0.05));
+            border-left: 5px solid #764ba2;
+        }
+
+        /* AI・VR機能カード */
+        .features-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: 2rem;
-            margin: 2rem 0;
+            margin: 3rem 0;
         }
 
         .feature-card {
-            background: rgba(255, 255, 255, 0.9);
-            padding: 2rem;
-            border-radius: 15px;
-            text-align: center;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
+            background: linear-gradient(135deg, #f8fafc, #e2e8f0);
+            padding: 2.5rem;
+            border-radius: 20px;
+            border: 1px solid rgba(102, 126, 234, 0.2);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(102, 126, 234, 0.1), transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
         }
 
         .feature-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(102, 126, 234, 0.2);
         }
 
-        .feature-card h3 {
-            color: #ff6b9d;
+        .feature-card:hover::before {
+            opacity: 1;
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .feature-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #2d3748;
             margin-bottom: 1rem;
         }
 
-        footer {
-            background: rgba(0, 0, 0, 0.8);
-            color: white;
-            text-align: center;
-            padding: 2rem 0;
-            margin-top: 3rem;
+        /* フェーズ表示 */
+        .phases {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
         }
 
+        .phase-card {
+            background: linear-gradient(135deg, #ffffff, #f8fafc);
+            padding: 2.5rem;
+            border-radius: 20px;
+            border: 2px solid #e2e8f0;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .phase-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            border-radius: 20px 20px 0 0;
+        }
+
+        .phase-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(102, 126, 234, 0.15);
+        }
+
+        .phase-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+        }
+
+        /* 目標指標 */
+        .metrics {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .metric-card {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 15px 30px rgba(102, 126, 234, 0.3);
+            transition: transform 0.3s ease;
+        }
+
+        .metric-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .metric-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .metric-label {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        /* 技術要素 */
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .tech-item {
+            background: linear-gradient(135deg, #e6fffa, #b2f5ea);
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            font-weight: 500;
+            color: #234e52;
+            border: 1px solid #81e6d9;
+            transition: all 0.3s ease;
+        }
+
+        .tech-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(129, 230, 217, 0.3);
+        }
+
+        /* 強調ボックス */
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.08), rgba(118, 75, 162, 0.08));
+            padding: 2rem;
+            border-radius: 15px;
+            border-left: 4px solid #667eea;
+            margin: 2rem 0;
+            position: relative;
+        }
+
+        .highlight-box::before {
+            content: '💡';
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 2rem;
+            opacity: 0.3;
+        }
+
+        .highlight-box p {
+            color: #2d3748;
+            font-weight: 500;
+        }
+
+        /* レスポンシブ */
         @media (max-width: 768px) {
-            .nav-links {
-                gap: 1rem;
-                font-size: 0.9rem;
-            }
-            
             .hero h1 {
                 font-size: 2.5rem;
             }
             
-            .content {
-                margin: 1rem 0;
+            .section {
+                margin: 2rem 0;
                 padding: 2rem;
+            }
+            
+            .features-grid,
+            .phases {
+                grid-template-columns: 1fr;
             }
         }
     </style>
 </head>
 <body>
     <header>
-        <nav class="container">
-            <div class="logo">Ashioto 2025</div>
-            <ul class="nav-links">
-                <li><a href="yuduki.html">Yuduki</a></li>
-                <li><a href="yuko.html">Yuko</a></li>
-                <li><a href="haruppy.html">Haruppy</a></li>
-            </ul>
-        </nav>
+        <div class="container">
+            <div class="logo">AI×VR キャリア支援</div>
+        </div>
     </header>
 
     <main>
         <section class="hero">
             <div class="container">
-                <h1>Yuko</h1>
-                <p>心に響く優しい光の調べ</p>
+                <h1>AI×VR スマートキャリア支援</h1>
+                <div class="hero-subtitle">秋田モデル</div>
+                <div class="hero-tagline">〜障がい者・若者の潜在能力を引き出し、デジタル技術で新たな就労の道を拓く〜</div>
             </div>
         </section>
 
-        <section class="container">
-            <div class="content">
-                <h2>光の物語</h2>
-                <p>Yukoは、温かな春の陽だまりのように、人々の心に安らぎと希望をもたらします。その優しい光は、どんな困難な時でも道を照らし、前に進む勇気を与えてくれます。</p>
-                <p>彼女の存在は、まるで美しい花のように周りの人々を癒し、笑顔にします。Yukoの持つ純粋な心と優しさは、多くの人に愛され続けています。</p>
-            </div>
-
-            <div class="flower-section">
-                <div class="flower-emoji">🌸</div>
-                <h3 style="color: white; margin-bottom: 1rem;">優しさの詩</h3>
-                <p style="color: white; font-style: italic;">
-                    「春の陽だまりのような温かさで<br>
-                    人々の心を包み込み<br>
-                    希望という花を咲かせる」
-                </p>
-            </div>
-
-            <div class="features">
-                <div class="feature-card">
-                    <h3>💖 温かい心</h3>
-                    <p>いつも周りの人を思いやり、温かい心で接します。その優しさは多くの人に勇気を与えます。</p>
-                </div>
-                <div class="feature-card">
-                    <h3>🌟 明るい笑顔</h3>
-                    <p>どんな時でも明るい笑顔を絶やさず、周りの人々に元気を分けてくれます。</p>
-                </div>
-                <div class="feature-card">
-                    <h3>🎵 美しい声</h3>
-                    <p>天使のような美しい声で、人々の心を癒し、感動を与えます。</p>
-                </div>
-            </div>
-
-            <div class="content">
-                <h2>Yukoの魅力</h2>
-                <p><strong>🌺 純粋さ:</strong> 心の奥底まで透き通るような純粋さを持っています。</p>
-                <p><strong>🌺 思いやり:</strong> 常に他人のことを思い、手を差し伸べる優しさがあります。</p>
-                <p><strong>🌺 希望:</strong> どんな困難な状況でも希望を失わず、前向きに歩み続けます。</p>
-            </div>
-        </section>
-    </main>
-
-    <footer>
         <div class="container">
-            <p>&copy; 2025 Ashioto Project. すべての権利を留保します。</p>
+            <!-- 自己紹介・背景 -->
+            <section class="section personal-story">
+                <h2>💔 なぜ私がこの事業に取り組むのか</h2>
+                
+                <div class="section-image">
+                    <div>
+                        <strong>画像：</strong>障がいを持つ方が働く様子を支援するイメージ<br>
+                        VRヘッドセットを使いながら学習する利用者と、温かく見守るサポートスタッフ
+                    </div>
+                </div>
+
+                <h3>家族の生きづらさが教えてくれたこと</h3>
+                <p>私の母の妹は、障がいを持っていたため中々働くことができず、働いても1週間で辞めてしまうということを繰り返していました。結局自宅でひきこもるようになり、生きづらさを感じて<strong>5年前に亡くなりました</strong>。</p>
+                
+                <p>母の姉も同じように、働いてみても1週間ぐらいで辞めてしまい、今は生活保護を受けて暮らしています。元気ではあるのですが、中々働こうとはしていません。</p>
+
+                <div class="highlight-box">
+                    <p><strong>転機となった発見</strong><br>
+                    最近学校でAIやWeb開発を学ぶようになって気づいたのです。もしかして、これらの技術が仕事になるなら、身内の生きづらさも解決できるようになるんじゃないか、と。</p>
+                </div>
+
+                <p>この個人的な体験が、障がいを持つ方や就労に困難を抱える若者のために、<strong>AIとVR技術を活用した革新的な就労支援システム</strong>を開発する原動力となっています。</p>
+
+                <div class="section-image">
+                    <div>
+                        <strong>画像：</strong>秋田の地域コミュニティで支援を受ける人々<br>
+                        地域包括支援センターでAI就労支援を受ける多様な参加者たち
+                    </div>
+                </div>
+            </section>
+
+            <!-- 事業概要 -->
+            <section class="section">
+                <h2>🚀 AI×VR スマートキャリア支援とは</h2>
+                
+                <p><strong>若者や障がいのある方々（15~39歳の不登校・ひきこもり・精神/発達障害等）</strong>が持つ潜在能力を、AIによる個別最適化技術で引き出し、「<strong>見つける→鍛える→試す→広げる</strong>」の4ステップを通じて地域社会での自立就労に繋げる革新的なプログラムです。</p>
+
+                <div class="section-image">
+                    <div>
+                        <strong>画像：</strong>AI×VR技術の概念図<br>
+                        AIが個人の特性を分析し、VR空間でスキル習得する未来的なイメージ
+                    </div>
+                </div>
+
+                <div class="tech-stack">
+                    <div class="tech-item">🤖 AI個別最適化</div>
+                    <div class="tech-item">🥽 VR作品美術館</div>
+                    <div class="tech-item">🎭 AIアバター面接</div>
+                    <div class="tech-item">📊 高精度マッチング</div>
+                    <div class="tech-item">☁️ クラウド連携</div>
+                    <div class="tech-item">📱 リモートワーク</div>
+                </div>
+
+                <h3>対象者</h3>
+                <ul style="margin-left: 2rem; margin-bottom: 2rem; color: #2d3748;">
+                    <li>15~39歳の不登校・ひきこもり状態にある方</li>
+                    <li>精神障がい・発達障がいを持つ方</li>
+                    <li>就労移行支援・A型事業所を利用している方</li>
+                    <li>デジタルスキルを活かした在宅就労を希望する方</li>
+                </ul>
+
+                <div class="highlight-box">
+                    <p><strong>秋田から全国へのモデル創出</strong><br>
+                    秋田県の地域課題を解決し、その成功事例を全国に展開する持続可能なビジネスモデルを確立します。</p>
+                </div>
+            </section>
+
+            <!-- 4つのステップ -->
+            <section class="section tech-innovation">
+                <h2>🔄 4ステップ支援プログラム</h2>
+
+                <div class="phases">
+                    <div class="phase-card">
+                        <div class="phase-number">STEP 1</div>
+                        <h3>見つける</h3>
+                        <div class="section-image" style="height: 200px; margin: 1rem 0;">
+                            <div>
+                                <strong>画像：</strong>AI診断システムの画面<br>
+                                個人の強みや適性を可視化するAI分析結果
+                            </div>
+                        </div>
+                        <p><strong>AI強み診断</strong>で利用者の潜在能力と適性を発見。行動ログを機械学習で解析し、最適なキャリアパスを提示。</p>
+                    </div>
+
+                    <div class="phase-card">
+                        <div class="phase-number">STEP 2</div>
+                        <h3>鍛える</h3>
+                        <div class="section-image" style="height: 200px; margin: 1rem 0;">
+                            <div>
+                                <strong>画像：</strong>個別eラーニングの様子<br>
+                                AIが最適化した学習プログラムで集中して学ぶ利用者
+                            </div>
+                        </div>
+                        <p><strong>個別eラーニング</strong>でスキルを習得。データ入力、デザイン、SNS運用など、AI技術で学習速度を3.2倍向上。</p>
+                    </div>
+
+                    <div class="phase-card">
+                        <div class="phase-number">STEP 3</div>
+                        <h3>試す</h3>
+                        <div class="section-image" style="height: 200px; margin: 1rem 0;">
+                            <div>
+                                <strong>画像：</strong>VR面接練習の様子<br>
+                                VR空間でAIアバターと面接練習をする利用者
+                            </div>
+                        </div>
+                        <p><strong>VR面接練習</strong>と<strong>模擬業務</strong>で実践経験を積む。AIアバターによる本格的な面接トレーニング。</p>
+                    </div>
+
+                    <div class="phase-card">
+                        <div class="phase-number">STEP 4</div>
+                        <h3>広げる</h3>
+                        <div class="section-image" style="height: 200px; margin: 1rem 0;">
+                            <div>
+                                <strong>画像：</strong>就労成功者が職場で活躍する様子<br>
+                                リモートワークで生き生きと働く卒業生たち
+                            </div>
+                        </div>
+                        <p><strong>就労・起業支援</strong>で社会参加を実現。企業マッチングと継続的な定着フォローを提供。</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- AI・VR革新技術 -->
+            <section class="section">
+                <h2>🤖 革新的なAI・VR技術</h2>
+
+                <div class="section-image">
+                    <div>
+                        <strong>画像：</strong>統合されたAI・VRシステムの全体像<br>
+                        各技術が連携して動作する未来的なダッシュボード画面
+                    </div>
+                </div>
+
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">🎯</div>
+                        <div class="feature-title">AI就労支援ツール</div>
+                        <p>データ入力、営業サポート、デザイン補助、SNS運用、進捗モニタリングの5モジュール以上を備えたAIツール。利用者の行動ログを機械学習で解析し、<strong>個別最適化</strong>を実現。</p>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon">🏛️</div>
+                        <div class="feature-title">VR作品美術館</div>
+                        <p>習得したスキルで作成した作品をVR空間に展示。<strong>ポートフォリオ</strong>として機能し、企業が能力を視覚的に理解可能。PCブラウザからもアクセス可能。</p>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon">🎭</div>
+                        <div class="feature-title">AIアバター面接</div>
+                        <p>VR空間内でAIアバターを相手に模擬面接練習。視線、声のトーン、ジェスチャーまで評価し、<strong>リアルタイムフィードバック</strong>を提供。</p>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon">🔍</div>
+                        <div class="feature-title">AI特性解析マッチング</div>
+                        <p>VR行動ログと面接データを総合的に解析し、利用者の特性と企業ニーズを<strong>高精度でマッチング</strong>。早期離職リスクを低減。</p>
+                    </div>
+                </div>
+
+                <div class="highlight-box">
+                    <p><strong>技術革新のポイント</strong><br>
+                    単体の技術ではなく、AI・VR・データ解析を統合した包括的なエコシステムを構築。利用者の成長を多角的にサポートします。</p>
+                </div>
+            </section>
+
+            <!-- 目標・成果指標 -->
+            <section class="section">
+                <h2>📊 3年間の目標指標</h2>
+
+                <div class="section-image">
+                    <div>
+                        <strong>画像：</strong>成果指標のインフォグラフィック<br>
+                        参加者数、就労達成率、定着率などの目標値を視覚化したグラフ
+                    </div>
+                </div>
+
+                <div class="metrics">
+                    <div class="metric-card">
+                        <div class="metric-number">150人</div>
+                        <div class="metric-label">プログラム参加者</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-number">60%</div>
+                        <div class="metric-label">就労達成率</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-number">90%</div>
+                        <div class="metric-label">6か月定着率</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-number">92%</div>
+                        <div class="metric-label">適性マッチ率</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-number">200点</div>
+                        <div class="metric-label">VR美術館作品数</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-number">15社</div>
+                        <div class="metric-label">連携企業・団体数</div>
+                    </div>
+                </div>
+
+                <h3>定性目標</h3>
+                <ul style="margin-left: 2rem; color: #2d3748; margin-top: 2rem;">
+                    <li><strong>自己肯定感の向上</strong> - 作品展示とスキル習得による達成感</li>
+                    <li><strong>社会的つながりの回復</strong> - 地域コミュニティとの連携強化</li>
+                    <li><strong>プレゼンテーション能力向上</strong> - VRを活用した実践的訓練</li>
+                    <li><strong>企業側のミスマッチ低減</strong> - AI分析による適材適所の実現</li>
+                </ul>
+            </section>
+
+            <!-- ビジネスモデル -->
+            <section class="section tech-innovation">
+                <h2>💼 持続可能なビジネスモデル</h2>
+
+                <div class="section-image">
+                    <div>
+                        <strong>画像：</strong>収益構造とパートナーシップの概念図<br>
+                        行政、企業、支援機関が連携した持続可能なエコシステム
+                    </div>
+                </div>
+
+                <h3>地域連携型収益モデル</h3>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">🏢</div>
+                        <div class="feature-title">企業連携収益</div>
+                        <p>マッチング成功報酬、研修プログラム提供、VRポートフォリオ活用ライセンス</p>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon">🏛️</div>
+                        <div class="feature-title">行政パートナーシップ</div>
+                        <p>秋田県補助金、国の就労支援事業、社会課題解決型委託事業</p>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon">💡</div>
+                        <div class="feature-title">技術ライセンス</div>
+                        <p>AI就労支援ツールの外部販売、VRシステムのライセンス提供</p>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon">☁️</div>
+                        <div class="feature-title">クラウドソーシング</div>
+                        <p>プラットフォーム運営手数料、マッチング仲介料、継続サポート料</p>
+                    </div>
+                </div>
+
+                <div class="highlight-box">
+                    <p><strong>3年目自立化目標</strong><br>
+                    初年度は補助金中心、2年目で企業連携を拡大、3年目には自己資金比率50%以上を達成し、持続可能な事業体制を確立します。</p>
+                </div>
+            </section>
+
+            <!-- 社会的インパクト -->
+            <section class="section">
+                <h2>🌟 期待される社会的インパクト</h2>
+
+                <div class="section-image">
+                    <div>
+                        <strong>画像：</strong>社会変革のビジョン図<br>
+                        秋田から全国に波及する就労支援モデルの成功イメージ
+                    </div>
+                </div>
+
+                <h3>地域から全国へのモデル波及</h3>
+                <p><strong>秋田県</strong>の地域課題解決を通じて実証された成功モデルを、同様の課題を抱える全国の地方都市に展開。障がい者雇用の新たなスタンダードを確立します。</p>
+
+                <h3>デジタル技術による社会包摂</h3>
+                <p>AI・VR技術により、従来の就労支援では到達困難だった<strong>個別最適化</strong>を実現。一人ひとりの特性を活かした「適材適所」の就労機会を創出します。</p>
+
+                <div class="highlight-box">
+                    <p><strong>私たちの使命</strong><br>
+                    家族の生きづらさから始まったこの取り組みを、同じような困難を抱える多くの人々の希望の光にしたい。テクノロジーの力で、誰もが自分らしく働ける社会を創造します。</p>
+                </div>
+
+                <p style="text-align: center; font-size: 1.2rem; color: #667eea; font-weight: bold; margin-top: 3rem;">
+                    一人ひとりの可能性を信じ、<br>
+                    技術の力で新たな働き方を創造する。
+                </p>
+            </section>
         </div>
-    </footer>
+    </main>
 </body>
 </html>

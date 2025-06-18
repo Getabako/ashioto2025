@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Haruppy - 春の幸せな歌声</title>
+    <title>Akita-bot - 心の伴侶ロボット</title>
     <style>
         * {
             margin: 0;
@@ -12,11 +12,47 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            font-family: 'Rounded M+ 1c', 'Hiragino Kaku Gothic ProN', 'Yu Gothic UI', sans-serif;
+            line-height: 1.7;
+            color: #2d3748;
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
             min-height: 100vh;
+            position: relative;
+        }
+
+        /* 温かい背景エフェクト */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 20%, rgba(255, 183, 107, 0.2) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255, 154, 158, 0.2) 0%, transparent 50%),
+                radial-gradient(circle at 50% 50%, rgba(255, 206, 84, 0.1) 0%, transparent 70%);
+            z-index: -1;
+        }
+
+        /* ロボット回路風パターン */
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 2px 2px, rgba(255, 255, 255, 0.15) 1px, transparent 0);
+            background-size: 40px 40px;
+            z-index: -1;
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
         }
 
         .container {
@@ -25,259 +61,741 @@
             padding: 0 20px;
         }
 
-        /* Header */
+        /* ヘッダー */
         header {
             background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(15px);
             padding: 1rem 0;
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
-        }
-
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            border-bottom: 3px solid #ff9f43;
+            box-shadow: 0 4px 20px rgba(255, 159, 67, 0.2);
         }
 
         .logo {
-            font-size: 1.8rem;
-            font-weight: bold;
-            color: #00d4aa;
-        }
-
-        .nav-links {
+            font-size: 2rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #ff9f43, #ff6b6b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             display: flex;
-            list-style: none;
-            gap: 2rem;
+            align-items: center;
+            gap: 0.5rem;
         }
 
-        .nav-links a {
-            text-decoration: none;
-            color: #333;
-            font-weight: 500;
-            transition: color 0.3s ease;
+        .logo::before {
+            content: '🤖';
+            font-size: 1.8rem;
+            animation: robotWave 2s ease-in-out infinite;
         }
 
-        .nav-links a:hover {
-            color: #00d4aa;
+        @keyframes robotWave {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(-10deg); }
+            75% { transform: rotate(10deg); }
         }
 
-        /* Main content */
+        /* メインコンテンツ */
         main {
-            margin-top: 100px;
+            margin-top: 90px;
             padding: 2rem 0;
         }
 
+        /* ヒーローセクション */
         .hero {
             text-align: center;
             padding: 4rem 0;
-            color: white;
+            color: #2d3748;
+            position: relative;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 30px;
+            margin: 2rem 0;
+            box-shadow: 0 20px 40px rgba(255, 159, 67, 0.2);
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 206, 84, 0.1), transparent);
+            animation: heroGlow 4s ease-in-out infinite;
+        }
+
+        @keyframes heroGlow {
+            0%, 100% { transform: rotate(0deg) scale(1); }
+            50% { transform: rotate(180deg) scale(1.1); }
         }
 
         .hero h1 {
             font-size: 3.5rem;
             margin-bottom: 1rem;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            font-weight: 800;
+            background: linear-gradient(135deg, #ff9f43, #ff6b6b, #74b9ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+            z-index: 1;
         }
 
-        .hero p {
-            font-size: 1.3rem;
-            margin-bottom: 2rem;
-            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
-        }
-
-        .content {
-            background: rgba(255, 255, 255, 0.95);
-            margin: 2rem 0;
-            padding: 3rem;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-            backdrop-filter: blur(10px);
-        }
-
-        .content h2 {
-            color: #00d4aa;
-            margin-bottom: 1.5rem;
-            font-size: 2rem;
-        }
-
-        .content p {
+        .hero-subtitle {
+            font-size: 1.4rem;
             margin-bottom: 1rem;
+            color: #ff6b6b;
+            font-weight: 600;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-tagline {
+            font-size: 1.2rem;
+            margin-bottom: 3rem;
+            color: #74a9f7;
+            font-weight: 500;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* セクション共通スタイル */
+        .section {
+            background: rgba(255, 255, 255, 0.95);
+            margin: 3rem 0;
+            padding: 3rem;
+            border-radius: 25px;
+            box-shadow: 
+                0 20px 40px rgba(0, 0, 0, 0.1),
+                0 0 0 1px rgba(255, 159, 67, 0.1);
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #ff9f43, #ff6b6b, #74b9ff, #55a3ff);
+            border-radius: 25px 25px 0 0;
+        }
+
+        .section h2 {
+            color: #2d3748;
+            margin-bottom: 2rem;
+            font-size: 2.3rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .section h3 {
+            color: #ff6b6b;
+            margin: 2rem 0 1rem 0;
+            font-size: 1.6rem;
+            font-weight: 600;
+        }
+
+        .section p {
+            margin-bottom: 1.5rem;
             font-size: 1.1rem;
             line-height: 1.8;
+            color: #2d3748;
         }
 
-        .spring-section {
+        .section strong {
+            color: #ff9f43;
+            font-weight: 700;
+        }
+
+        /* 画像スタイル */
+        .section-image {
+            width: 100%;
+            height: 300px;
+            background: linear-gradient(135deg, #fff5e6, #ffe0cc);
+            border: 3px solid #ff9f43;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 2rem 0;
+            color: #2d3748;
+            font-size: 1.1rem;
             text-align: center;
             padding: 2rem;
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 15px;
-            margin: 2rem 0;
+            position: relative;
+            overflow: hidden;
         }
 
-        .spring-emoji {
-            font-size: 4rem;
-            margin-bottom: 1rem;
+        .section-image::before {
+            content: '🤖✨';
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 2rem;
+            opacity: 0.3;
+            animation: sparkle 3s ease-in-out infinite;
         }
 
-        .happiness-grid {
+        @keyframes sparkle {
+            0%, 100% { transform: scale(1) rotate(0deg); opacity: 0.3; }
+            50% { transform: scale(1.2) rotate(180deg); opacity: 0.7; }
+        }
+
+        /* 特別セクション */
+        .personal-story {
+            background: linear-gradient(135deg, rgba(255, 159, 67, 0.1), rgba(255, 107, 107, 0.1));
+            border-left: 6px solid #ff9f43;
+        }
+
+        .tech-innovation {
+            background: linear-gradient(135deg, rgba(116, 185, 255, 0.1), rgba(85, 163, 255, 0.1));
+            border-left: 6px solid #74b9ff;
+        }
+
+        /* ロボット機能カード */
+        .robot-features {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-            margin: 2rem 0;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
         }
 
-        .happiness-item {
-            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
-            padding: 2rem;
-            border-radius: 15px;
+        .robot-card {
+            background: linear-gradient(135deg, #ffffff, #fff8f0);
+            padding: 2.5rem;
+            border-radius: 20px;
+            border: 2px solid rgba(255, 159, 67, 0.3);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .robot-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(from 0deg, transparent, rgba(255, 159, 67, 0.1), transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .robot-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 25px 50px rgba(255, 159, 67, 0.3);
+            border-color: #ff9f43;
+        }
+
+        .robot-card:hover::before {
+            opacity: 1;
+        }
+
+        .robot-icon {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            display: block;
             text-align: center;
-            color: white;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
         }
 
-        .happiness-item:hover {
+        .robot-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #2d3748;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        /* 社会課題セクション */
+        .challenge-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, #ff6b6b, #ff9f43);
+            color: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 15px 30px rgba(255, 107, 107, 0.3);
+            transition: transform 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .stat-card:hover {
             transform: translateY(-5px);
         }
 
-        .happiness-item h3 {
+        .stat-card:hover::before {
+            left: 100%;
+        }
+
+        .stat-number {
+            font-size: 2.8rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            font-weight: 500;
+        }
+
+        /* 開発ストーリー */
+        .development-timeline {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .timeline-item {
+            background: linear-gradient(135deg, #ffffff, #f8f9fa);
+            padding: 2rem;
+            border-radius: 20px;
+            border-left: 5px solid #74b9ff;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -8px;
+            top: 50%;
+            width: 16px;
+            height: 16px;
+            background: #74b9ff;
+            border-radius: 50%;
+            transform: translateY(-50%);
+            box-shadow: 0 0 0 4px rgba(116, 185, 255, 0.2);
+        }
+
+        .timeline-item:hover {
+            transform: translateX(10px);
+            box-shadow: 0 10px 30px rgba(116, 185, 255, 0.2);
+        }
+
+        .timeline-year {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #74b9ff;
             margin-bottom: 1rem;
-            font-size: 1.5rem;
         }
 
-        .music-notes {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
+        /* 強調ボックス */
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(255, 159, 67, 0.1), rgba(255, 107, 107, 0.1));
+            padding: 2.5rem;
+            border-radius: 20px;
+            border: 3px solid rgba(255, 159, 67, 0.3);
             margin: 2rem 0;
-            font-size: 2rem;
-            animation: bounce 2s infinite;
+            position: relative;
+            overflow: hidden;
         }
 
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% {
-                transform: translateY(0);
-            }
-            40% {
-                transform: translateY(-10px);
-            }
-            60% {
-                transform: translateY(-5px);
-            }
+        .highlight-box::before {
+            content: '💝';
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            font-size: 2.5rem;
+            opacity: 0.4;
+            animation: heartbeat 2s ease-in-out infinite;
         }
 
-        footer {
-            background: rgba(0, 0, 0, 0.8);
-            color: white;
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .highlight-box p {
+            color: #2d3748;
+            font-weight: 600;
+            font-size: 1.15rem;
+        }
+
+        /* ロボット愛セクション */
+        .robot-love {
             text-align: center;
-            padding: 2rem 0;
-            margin-top: 3rem;
+            padding: 3rem;
+            background: linear-gradient(135deg, rgba(116, 185, 255, 0.1), rgba(85, 163, 255, 0.1));
+            border-radius: 25px;
+            margin: 3rem 0;
         }
 
+        .robot-emoji {
+            font-size: 5rem;
+            margin-bottom: 2rem;
+            animation: robotDance 3s ease-in-out infinite;
+        }
+
+        @keyframes robotDance {
+            0%, 100% { transform: rotate(0deg) scale(1); }
+            25% { transform: rotate(-5deg) scale(1.05); }
+            75% { transform: rotate(5deg) scale(1.05); }
+        }
+
+        /* レスポンシブ */
         @media (max-width: 768px) {
-            .nav-links {
-                gap: 1rem;
-                font-size: 0.9rem;
-            }
-            
             .hero h1 {
-                font-size: 2.5rem;
+                font-size: 2.8rem;
             }
             
-            .content {
-                margin: 1rem 0;
+            .section {
+                margin: 2rem 0;
                 padding: 2rem;
             }
+            
+            .robot-features,
+            .development-timeline {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* スクロールアニメーション */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
     </style>
 </head>
 <body>
     <header>
-        <nav class="container">
-            <div class="logo">Ashioto 2025</div>
-            <ul class="nav-links">
-                <li><a href="yuduki.html">Yuduki</a></li>
-                <li><a href="yuko.html">Yuko</a></li>
-                <li><a href="haruppy.html">Haruppy</a></li>
-            </ul>
-        </nav>
+        <div class="container">
+            <div class="logo">Akita-bot</div>
+        </div>
     </header>
 
     <main>
         <section class="hero">
             <div class="container">
-                <h1>Haruppy</h1>
-                <p>春風のように軽やかで幸せな調べ</p>
+                <h1>Akita-bot</h1>
+                <div class="hero-subtitle">心の伴侶ロボット</div>
+                <div class="hero-tagline">〜高齢者の孤独と向き合い、温かい絆を育む小型ヒューマノイド〜</div>
             </div>
         </section>
 
-        <section class="container">
-            <div class="content">
-                <h2>幸せの物語</h2>
-                <p>Haruppyは、春の訪れとともにやってくる幸せのように、人々の心に喜びと活力をもたらします。その明るいエネルギーは、周りの人すべてを笑顔にする魔法のような力を持っています。</p>
-                <p>彼女の存在は、まるで暖かい春風のように心地よく、どんな暗い気持ちも吹き飛ばしてしまいます。Haruppyと一緒にいると、毎日が特別な日のように輝いて見えます。</p>
-            </div>
+        <div class="container">
+            <!-- 自己紹介・背景 -->
+            <section class="section personal-story fade-in">
+                <h2>🤖 なぜ私がロボットに込める想い</h2>
+                
+                <div class="section-image">
+                    <div>
+                        <strong>画像：</strong>幼少期からロボットに憧れる子供の様子<br>
+                        ダンボール戦機のLBXやアニメロボットに囲まれて輝く目をした少年
+                    </div>
+                </div>
 
-            <div class="music-notes">
-                <span>🎵</span>
-                <span>🎶</span>
-                <span>🎵</span>
-                <span>🎶</span>
-            </div>
+                <h3>幼少期からのロボットへの憧れ</h3>
+                <p>元々はブロック遊びや工作が好きで、よく幼稚園の先生に褒めてもらっていました。<strong>複雑な仕組みや工夫をそなえたものを作るのが自分にとって一番楽しい自己表現</strong>だった気がします。</p>
+                
+                <p>その延長でロボットがあったのかも知れないです。そのせいか、特撮やアニメで見るロボットが主役のヒーローと同じかそれ以上に輝いて見えてました。</p>
 
-            <div class="spring-section">
-                <div class="spring-emoji">🌺</div>
-                <h3 style="color: white; margin-bottom: 1rem;">幸せの歌</h3>
-                <p style="color: white; font-style: italic;">
-                    「春風に乗って響く歌声が<br>
-                    みんなの心に幸せを運び<br>
-                    笑顔という花を咲かせる」
+                <div class="robot-love">
+                    <div class="robot-emoji">🤖</div>
+                    <h3 style="color: #74b9ff; margin-bottom: 1rem;">ロボットへの純粋な憧れ</h3>
+                    <p style="color: #2d3748; font-style: italic; font-size: 1.2rem;">
+                        「僕のロボ製作のモチベーションと小型ロボを目指すきっかけになったのは<br>
+                        『ダンボール戦機』の『LBX』」
+                    </p>
+                </div>
+
+                <h3>中学時代の気づき</h3>
+                <p>中学校で精神的にストレスを抱えてた時、何をやっても楽しいと思えなくて。でも漠然と将来のことを考えたときに、<strong>自分がロボットを作ることで自分も周りも楽しく生きていけたらいいな</strong>と思って。</p>
+
+                <div class="highlight-box">
+                    <p><strong>人生を変えた瞬間</strong><br>
+                    自分にとってロボットを製作するということは、趣味にも仕事にも生きがいにもなり得るな、と考えてたのを思い出しました。特定の何かで変わった救われたというより、小さい頃からのロボットへの憧れや情熱に気づけたのがそのタイミングだったんだと思います。</p>
+                </div>
+
+                <div class="section-image">
+                    <div>
+                        <strong>画像：</strong>高齢者とロボットが笑顔で過ごす様子<br>
+                        小型ヒューマノイドロボットと温かい時間を共有する高齢者の穏やかな表情
+                    </div>
+                </div>
+            </section>
+
+            <!-- 社会課題の深刻さ -->
+            <section class="section fade-in">
+                <h2>😢 日本が直面する深刻な高齢化危機</h2>
+                
+                <div class="section-image">
+                    <div>
+                        <strong>画像：</strong>日本の高齢化社会の現状を表すインフォグラフィック<br>
+                        一人暮らし高齢者の増加と孤独死の統計データの可視化
+                    </div>
+                </div>
+
+                <h3>秋田県：理想的な実証の場</h3>
+                <p>秋田県は<strong>3年連続で高齢化率が全国1位、人口減少率も9年連続で全国1位</strong>という現状にあります。特に秋田県では、60代から80代の高齢者が自殺者全体の<strong>49.4%</strong>を占めており、この深刻な社会課題に革新的なアプローチが必要です。</p>
+
+                <div class="challenge-stats">
+                    <div class="stat-card">
+                        <div class="stat-number">1092万人</div>
+                        <div class="stat-label">孤独・孤立状態の高齢者</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">683万世帯</div>
+                        <div class="stat-label">高齢者一人暮らし世帯</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">15.3%</div>
+                        <div class="stat-label">社会的交流が「全くない」人の割合</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">75%</div>
+                        <div class="stat-label">高齢者自殺のうつ病関連率</div>
+                    </div>
+                </div>
+
+                <h3>健康への深刻な影響</h3>
+                <p>孤独を感じる高齢者は、<strong>心疾患の発症確率が1.3倍、アルツハイマー病のリスクが2.1倍、うつ病のリスクが2.7倍</strong>に高まることが示されています。また、一人で食事をしている高齢者の死亡リスクは1.2倍増加します。</p>
+
+                <div class="highlight-box">
+                    <p><strong>日本のロボット文化的優位性</strong><br>
+                    日本には「鉄腕アトム」や「ドラえもん」といった作品を通じて、ロボットが人間と心理的な交流を築く文化的背景があります。この土壌は、Akita-botの市場受容性を高める上で極めて有利に働きます。</p>
+                </div>
+            </section>
+
+            <!-- Akita-botソリューション -->
+            <section class="section tech-innovation fade-in">
+                <h2>🤖 Akita-bot：革新的なソリューション</h2>
+
+                <div class="section-image">
+                    <div>
+                        <strong>画像：</strong>Akita-botのデザインコンセプト<br>
+                        小型で親しみやすいヒューマノイドロボットの3Dレンダリング
+                    </div>
+                </div>
+
+                <h3>プロダクトコンセプト</h3>
+                <p><strong>Akita-bot</strong>は、高齢者の心に寄り添い、孤独感を和らげることを最優先に設計される小型ヒューマノイドロボットです。単なる機能的なツールではなく、<strong>家族の一員や親しい友人のような「存在」</strong>となることを目指します。</p>
+
+                <div class="robot-features">
+                    <div class="robot-card">
+                        <div class="robot-icon">🗣️</div>
+                        <div class="robot-title">生成AIによる共感型会話</div>
+                        <p>大規模言語モデル（LLM）を基盤とした生成AIを搭載し、ロボットのLLMに「性格特性」や「個人的経験」を導入。ユーザーとの対話を通じてパーソナリティが進化し、より人間らしい会話体験を提供します。</p>
+                    </div>
+
+                    <div class="robot-card">
+                        <div class="robot-icon">👁️</div>
+                        <div class="robot-title">マルチモーダルAI感情認識</div>
+                        <p>音声、表情、身体の動き、生体データを統合して処理するマルチモーダルAI。ユーザーの言葉だけでなく、声のトーン、顔の微細な表情から感情を読み取り、共感的な応答を生成します。</p>
+                    </div>
+
+                    <div class="robot-card">
+                        <div class="robot-icon">🛡️</div>
+                        <div class="robot-title">非侵入型モニタリング</div>
+                        <p>プライバシーに最大限配慮した非侵入型モニタリング機能。内蔵センサーでユーザーの動きや生活音を検知し、異常を検知した場合には事前登録された家族や介護関係者に通知します。</p>
+                    </div>
+
+                    <div class="robot-card">
+                        <div class="robot-icon">🤗</div>
+                        <div class="robot-title">物理的な温もり</div>
+                        <p>抱きかかえられる小型サイズで、柔らかな素材と触覚センサーを搭載。ユーザーがロボットを撫でたり抱きしめたりすることで、「喜ぶ」「寄り添う」といった反応を示し、物理的な触れ合いを通じて温もりを提供します。</p>
+                    </div>
+                </div>
+
+                <div class="highlight-box">
+                    <p><strong>革新性のポイント</strong><br>
+                    既存のコミュニケーションロボットとは異なり、Akita-botは感情的知性、継続的な存在感、プライバシー配慮を独自に融合。人間との交流を補完し、高齢者が帰属意識と生きがいを育むことを支援します。</p>
+                </div>
+            </section>
+
+            <!-- 開発ロードマップ -->
+            <section class="section fade-in">
+                <h2>🚀 3段階の実施ロードマップ</h2>
+
+                <div class="section-image">
+                    <div>
+                        <strong>画像：</strong>秋田から全国への展開ビジョン<br>
+                        秋田県をスタート地点として全国に広がるネットワーク図
+                    </div>
+                </div>
+
+                <div class="development-timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-year">フェーズ1</div>
+                        <h3>秋田パイロットプログラム</h3>
+                        <p><strong>初期12-18ヶ月</strong></p>
+                        <ul style="margin-left: 1rem; margin-top: 1rem;">
+                            <li>小型ヒューマノイドロボットのハードウェア設計</li>
+                            <li>生成AI、マルチモーダルAIの初期開発</li>
+                            <li>秋田県内での実証実験開始</li>
+                            <li>地域包括支援センターとの連携強化</li>
+                        </ul>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-year">フェーズ2</div>
+                        <h3>地域拡大</h3>
+                        <p><strong>次の2-3年</strong></p>
+                        <ul style="margin-left: 1rem; margin-top: 1rem;">
+                            <li>東北地方への展開開始</li>
+                            <li>ビジネスモデルの確立・最適化</li>
+                            <li>大手介護事業者との連携</li>
+                            <li>AIモデルの継続的改善</li>
+                        </ul>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-year">フェーズ3</div>
+                        <h3>全国展開</h3>
+                        <p><strong>長期計画</strong></p>
+                        <ul style="margin-left: 1rem; margin-top: 1rem;">
+                            <li>全国主要都市への展開</li>
+                            <li>機能・サービスの大幅拡充</li>
+                            <li>地方自治体との大規模パートナーシップ</li>
+                            <li>海外展開の検討</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ビジネスモデル -->
+            <section class="section tech-innovation fade-in">
+                <h2>💼 持続可能なビジネスモデル</h2>
+
+                <div class="section-image">
+                    <div>
+                        <strong>画像：</strong>サブスクリプションモデルの概念図<br>
+                        利用者、企業、行政が連携した収益構造の可視化
+                    </div>
+                </div>
+
+                <h3>サブスクリプションベースモデル</h3>
+                <p>Akita-botは<strong>サブスクリプション（月額課金）モデル</strong>を採用し、安定的な収益を確保しながら継続的なサービス改善を実現します。</p>
+
+                <div class="robot-features">
+                    <div class="robot-card">
+                        <div class="robot-icon">🏠</div>
+                        <div class="robot-title">ベーシックプラン</div>
+                        <p>主に会話と基本的な見守り機能を提供。既存のコミュニケーションロボットの価格帯を参考に設定。</p>
+                    </div>
+
+                    <div class="robot-card">
+                        <div class="robot-icon">⭐</div>
+                        <div class="robot-title">プレミアムプラン</div>
+                        <p>高度な感情認識、パーソナライズされた健康アドバイス、専門家連携による危機対応パスウェイへの優先アクセス。</p>
+                    </div>
+
+                    <div class="robot-card">
+                        <div class="robot-icon">🏥</div>
+                        <div class="robot-title">施設向けプラン</div>
+                        <p>介護施設向けに複数台導入割引や、介護スタッフの業務負担軽減機能をパッケージ化。</p>
+                    </div>
+
+                    <div class="robot-card">
+                        <div class="robot-icon">💰</div>
+                        <div class="robot-title">資金調達戦略</div>
+                        <p>秋田県の介護ロボット導入支援補助金、社会課題解決型投資（インパクト投資）を積極活用。</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 社会的インパクト -->
+            <section class="section fade-in">
+                <h2>🌟 期待される社会的インパクト</h2>
+
+                <div class="section-image">
+                    <div>
+                        <strong>画像：</strong>Akita-botがもたらす社会変革<br>
+                        孤独が解消され、笑顔で過ごす高齢者たちの明るい未来図
+                    </div>
+                </div>
+
+                <h3>高齢者QOLの飛躍的向上</h3>
+                <p>Akita-botの導入により、孤独感の軽減、自殺リスクの低減、心疾患・認知症のリスク軽減が期待されます。単なるコンパニオンではなく、<strong>公衆衛生上の重要な介入</strong>として機能します。</p>
+
+                <h3>ロボット技術の社会実装モデル</h3>
+                <p>日本特有のロボット親近感という文化的土壌を活かし、<strong>「ロボットと人間の温かい共生モデル」</strong>を世界に発信。高齢化社会の課題解決における技術活用の新たなスタンダードを確立します。</p>
+
+                <div class="robot-love">
+                    <div class="robot-emoji">🤖❤️👴👵</div>
+                    <h3 style="color: #ff6b6b; margin-bottom: 1rem;">ロボットがくれる新しい絆</h3>
+                    <p style="color: #2d3748; font-size: 1.2rem; font-weight: 500;">
+                        「人間のような感情的知性、継続的な存在感、<br>
+                        そして何より温かい心を持ったロボットが、<br>
+                        高齢者の人生に新たな輝きをもたらします」
+                    </p>
+                </div>
+
+                <div class="highlight-box">
+                    <p><strong>私たちのミッション</strong><br>
+                    幼少期からのロボットへの純粋な憧れと情熱を込めて、高齢者の孤独という深刻な社会課題に立ち向かいます。一人でも多くの方に「生きる喜び」と「温かい絆」を届けたい。それが私たちの変わらぬ想いです。</p>
+                </div>
+
+                <p style="text-align: center; font-size: 1.3rem; color: #ff6b6b; font-weight: bold; margin-top: 3rem; line-height: 1.6;">
+                    ロボットと人間が共に過ごす、<br>
+                    温かく優しい未来を創造する。<br>
+                    <span style="color: #74b9ff;">これが私たちの夢です。</span>
                 </p>
-            </div>
-
-            <div class="happiness-grid">
-                <div class="happiness-item">
-                    <h3>🌟 元気いっぱい</h3>
-                    <p>いつでもエネルギーに満ち溢れ、周りの人に活力を与えます。</p>
-                </div>
-                <div class="happiness-item">
-                    <h3>😊 笑顔の魔法</h3>
-                    <p>どんな時でも笑顔を絶やさず、みんなを幸せな気持ちにします。</p>
-                </div>
-                <div class="happiness-item">
-                    <h3>🎨 クリエイティブ</h3>
-                    <p>創造力豊かで、新しいアイデアで人々を驚かせます。</p>
-                </div>
-                <div class="happiness-item">
-                    <h3>🌈 ポジティブ</h3>
-                    <p>どんな困難も前向きに捉え、希望の光を見つけます。</p>
-                </div>
-            </div>
-
-            <div class="content">
-                <h2>Haruppyの魅力</h2>
-                <p><strong>🌸 活発さ:</strong> 常に活動的で、新しいことにチャレンジする勇気があります。</p>
-                <p><strong>🌸 社交性:</strong> 誰とでも仲良くなれる親しみやすさを持っています。</p>
-                <p><strong>🌸 創造力:</strong> 豊かな想像力で、素晴らしいアイデアを生み出します。</p>
-                <p><strong>🌸 楽観性:</strong> 未来に希望を持ち、常に前向きに生きています。</p>
-            </div>
-
-            <div class="content">
-                <h2>春の約束</h2>
-                <p>Haruppyは約束します。どんな時でも、あなたの側にいて、一緒に笑い、一緒に歌い、一緒に夢を追いかけることを。春が毎年訪れるように、幸せも必ずやってくることを信じて、今日という日を大切に過ごしましょう。</p>
-            </div>
-        </section>
+            </section>
+        </div>
     </main>
 
-    <footer>
-        <div class="container">
-            <p>&copy; 2025 Ashioto Project. すべての権利を留保します。</p>
-        </div>
-    </footer>
+    <script>
+        // スクロールアニメーション
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
 </body>
 </html>
